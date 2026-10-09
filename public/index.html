@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Clarissa Alves</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --pink-camera: #e28fa8;
+            --pink-camera-dark: #cc748f;
+            --pink-text: #f38db1;
+            --pink-btn: #fde8f0;
+            --pink-btn-hover: #facce0;
+            --text-main: #222222;
+            --camera-screen: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+       
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+       
+        .camera-wrapper {
+            background: linear-gradient(145deg, #efa2ba, var(--pink-camera));
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 
+                inset 2px 2px 5px rgba(255,255,255,0.6),
+                inset -3px -3px 8px rgba(0,0,0,0.15),
+                8px 12px 25px rgba(0,0,0,0.15);
+            position: relative;
+            width: 480px;
+            flex-shrink: 0;
+        }
+
+        
+        .camera-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: 40px;
+            width: 60px;
+            height: 10px;
+            background: #c2c2c2;
+            border-radius: 5px 5px 0 0;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        .camera-screen-border {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        
+        .perfil-foto {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(100%) contrast(1.1); /* Estilo da imagem de referência */
+            background-color: #333;
+        }
+
+        .camera-brand {
+            color: #ffffff;
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 8px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        
+        .camera-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 60px;
+        }
+
+        .dial {
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, #f0f0f0, #a0a0a0);
+            border-radius: 50%;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2), inset 1px 1px 2px #fff;
+            position: relative;
+        }
+        
+        .dial::after {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+
+        .btn-small {
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #e0e0e0, #888);
+            border-radius: 50%;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .d-pad {
+            width: 40px;
+            height: 40px;
+            background: #d4d4d4;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 1px 1px 3px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .d-pad-inner {
+            width: 16px;
+            height: 16px;
+            background: #a0a0a0;
+            border-radius: 50%;
+        }
+       
+
+
+        .content-wrapper {
+            max-width: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        
+        .content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -60px;
+            width: 250px;
+            height: 250px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='none' stroke='%23f9dbe6' stroke-width='3' stroke-linecap='round' d='M50,150 Q100,50 150,150 M100,50 Q120,10 160,30'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+       
+        .perfil-nome {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: var(--pink-text);
+            line-height: 1;
+            margin-bottom: 15px;
+            transform: rotate(-2deg); /* Leve inclinação para parecer natural */
+        }
+
+       
+        .perfil-curso {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        
+        .perfil-texto {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .hobbies-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        
+        .acoes {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        
+        .btn-contato {
+            background-color: var(--pink-btn);
+            color: var(--text-main);
+            border: none;
+            padding: 10px 24px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-contato:hover {
+            background-color: var(--pink-btn-hover);
+        }
+
+        
+        .social-link {
+            font-size: 0.75rem;
+            color: var(--pink-camera-dark);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
+        }
+
+       
+        footer {
+            margin-top: 40px;
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            width: 100%;
+        }
+
+       
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .camera-wrapper {
+                width: 100%;
+                max-width: 480px;
+            }
+            .content-wrapper {
+                text-align: center;
+            }
+            .content-wrapper::before {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            .acoes {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .camera-wrapper {
+                padding: 15px;
+                gap: 10px;
+            }
+            .perfil-foto {
+                height: 180px;
+            }
+            .camera-controls {
+                width: 40px;
+            }
+            .dial {
+                width: 35px; height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        
+        
+        <div class="camera-wrapper">
+            <div class="camera-screen-border">
+                <img src="minhafoto.jpg" alt="Foto de Perfil" class="perfil-foto">
+                <div class="camera-brand">CLARISSA</div>
+            </div>
+            <div class="camera-controls">
+                <div class="dial"></div>
+                <div class="btn-small"></div>
+                <div class="btn-small"></div>
+                <div class="d-pad">
+                    <div class="d-pad-inner"></div>
+                </div>
+                <div class="btn-small"></div>
+            </div>
+        </div>
+
+        
+        <div class="content-wrapper">
+            
+            <!-- RF01: Nome -->
+            <h1 class="perfil-nome">quem sou eu?</h1>
+            
+            <!-- RF03: Curso -->
+            <p class="perfil-curso">Ciência da Computação — Clarissa Alves</p>
+            
+            <!-- RF05: Biografia -->
+            <p class="perfil-texto">
+                Sou uma estudante apaixonada por tecnologia. Busco sempre aprender novas ferramentas e atualmente estou me aprofundando na área de cibersegurança.
+            </p>
+
+            <!-- RF04: Hobbies -->
+            <p class="hobbies-title">O que amo fazer:</p>
+            <p class="perfil-texto">
+                Ler livros de ficção e mistério, assistir filmes e séries, jogar e visitar cafeterias.
+            </p>
+
+            <div class="acoes">
+                <!-- RF06: Botão de Contato -->
+                <button class="btn-contato" onclick="mostrarContato()">Email</button>
+                
+                <!-- RF07: Link Social -->
+                <a href="https://linkedin.com" target="_blank" class="social-link">LinkedIn</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- RF08: Rodapé -->
+    <footer>
+        <p id="data-atual"></p>
+    </footer>
+
+    <script>
+        // Função RF06
+        function mostrarContato() {
+            alert("Você pode me contatar pelo e-mail: alves.clarissa@outlook.com");
+        }
+
+        // Função RF08
+        const elementoData = document.getElementById('data-atual');
+        const hoje = new Date();
+        const opcoes = { year: 'numeric', month: 'long', day: 'numeric' };
+        elementoData.textContent = "Acessado em: " + hoje.toLocaleDateString('pt-BR', opcoes);
+
+        async function carregarDisciplinas() {
+const resposta = await fetch("/api/disciplinas");
+const disciplinas = await resposta.json();
+const lista = document.getElementById("lista");
+lista.innerHTML = "";
+disciplinas.forEach((d) => {
+const li = document.createElement("li");
+li.textContent = `${d.nome} (${d.semestre}º semestre)`;
+lista.appendChild(li);
+});
+}
+carregarDisciplinas();
+
+    </script>
+
+</body>
+</html>
